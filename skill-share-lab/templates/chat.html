@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="screen">
+  <div class="row" style="margin-bottom:14px;">
+    <div class="page-title" style="margin:0;">Chats</div>
+    <div class="spacer"></div>
+    <button class="btn small ghost" onclick="toast('New message')">✏️ New</button>
+  </div>
+  <div class="search"><span>🔍</span><input placeholder="Search contacts"></div>
+  <div class="row" style="margin-bottom:12px;"><span class="link" onclick="toast('Showing followed contacts')">👥 Followed contacts</span></div>
+
+  <div class="chat-row">
+    <div class="avatar">LW</div>
+    <div style="flex:1;min-width:0;">
+      <div class="row"><div style="font-weight:600;">Lily Wang</div><span class="muted">@lilyw</span></div>
+      <div class="last">Is the book still available?</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="muted" style="font-size:.75rem;">10:24</div>
+      <div class="unread" style="margin-top:4px;display:inline-block;">2</div>
+    </div>
+  </div>
+
+  <div class="chat-row">
+    <div class="avatar">TZ</div>
+    <div style="flex:1;min-width:0;">
+      <div class="row"><div style="font-weight:600;">Tom Zhang</div><span class="muted">@tomz</span></div>
+      <div class="last">I can return it on Friday.</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="muted" style="font-size:.75rem;">09:10</div>
+    </div>
+  </div>
+
+  <div class="chat-row">
+    <div class="avatar">SL</div>
+    <div style="flex:1;min-width:0;">
+      <div class="row"><div style="font-weight:600;">Sarah Lee</div><span class="muted">@sarah</span></div>
+      <div class="last">Thanks for lending it to me!</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="muted" style="font-size:.75rem;">Yesterday</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

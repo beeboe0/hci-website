@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="screen no-nav">
+  <div class="topbar">
+    <a class="back" href="javascript:history.back()">←</a>
+    <div class="spacer"></div>
+    <span class="bookmark">📑</span>
+  </div>
+  <div class="gallery" style="background:linear-gradient(135deg,hsl(210,60%,55%),hsl(250,60%,40%))">📘</div>
+  <h1 style="font-size:1.25rem;">{{ listing.title }}</h1>
+  <div class="muted" style="margin:6px 0 10px;">{{ listing.author }} · <span class="rating">★ 4.7</span></div>
+  <div class="card" style="margin-bottom:14px;">
+    <div class="row" style="margin-bottom:8px;"><span class="muted">Subject</span><span class="spacer"></span><span>{{ listing.subject }}</span></div>
+    <div class="row"><span class="muted">Return window</span><span class="spacer"></span><span>{{ listing.return_window }}</span></div>
+  </div>
+  <div class="detail-lender card">
+    <div class="avatar">{{ listing.display_name[0] if listing.display_name else listing.username[0] }}</div>
+    <div>
+      <div style="font-weight:600;">{{ listing.display_name or listing.username }}</div>
+      <div class="muted">@{{ listing.username }}</div>
+    </div>
+    <div class="spacer"></div><span class="link">View →</span>
+  </div>
+  <div class="row" style="margin:16px 0;">
+    <span class="muted">Rental price</span>
+    <span class="spacer"></span>
+    <span class="price" style="font-size:1.3rem;">£{{ listing.price }}/week</span>
+  </div>
+  <a href="{{ url_for('rent_now', lid=listing.id) }}" class="btn">Rent Now</a>
+</div>
+{% endblock %}

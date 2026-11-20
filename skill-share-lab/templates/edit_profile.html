@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="screen">
+  <div class="page-title">My Profile</div>
+  <div class="banner" onclick="toast('Tap to change banner')"></div>
+  <div class="row" style="margin-bottom:16px;">
+    <div class="avatar lg">{{ (user.display_name or user.username)[0] }}</div>
+    <div class="spacer"></div>
+    <a href="{{ url_for('settings') }}" class="btn small ghost">Settings ⚙️</a>
+  </div>
+  <form method="POST">
+    <div class="field">
+      <label>Display name</label>
+      <input name="display_name" value="{{ user.display_name or '' }}">
+    </div>
+    <div class="field">
+      <label>Username</label>
+      <input value="@{{ user.username }}" disabled>
+    </div>
+    <div class="field">
+      <label>Birthday</label>
+      <input name="birthday" type="date" value="{{ user.birthday or '' }}">
+    </div>
+    <div class="field">
+      <label>Current school</label>
+      <input name="university" value="{{ user.university or 'University of East Anglia' }}">
+    </div>
+    <div class="field">
+      <label>Year of study</label>
+      <select name="year_study">
+        <option {% if user.year_study == 'Year 1' %}selected{% endif %}>Year 1</option>
+        <option {% if user.year_study == 'Year 2' %}selected{% endif %}>Year 2</option>
+        <option {% if user.year_study == 'Year 3' %}selected{% endif %}>Year 3</option>
+        <option {% if user.year_study == 'Year 4' %}selected{% endif %}>Year 4</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>About me</label>
+      <textarea name="bio" rows="3">{{ user.bio or '' }}</textarea>
+    </div>
+    <button class="btn" type="submit">Save changes</button>
+  </form>
+</div>
+{% endblock %}

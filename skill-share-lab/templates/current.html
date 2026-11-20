@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="screen">
+  <div class="page-title">Current</div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('renting')">Current Renting</button>
+    <button class="tab" onclick="switchTab('listings')">Current Listings</button>
+    <button class="tab" onclick="switchTab('bookmark')">Bookmark</button>
+    <button class="tab" onclick="location.href='{{ url_for('history') }}'">History</button>
+  </div>
+
+  <div id="tab-renting">
+    {% for r in renting %}
+    <div class="list-row">
+      <div class="cover" style="background:linear-gradient(135deg,hsl(150,60%,55%),hsl(190,60%,40%))">🐍</div>
+      <div>
+        <div style="font-weight:600;font-size:.92rem;">{{ r.title }}</div>
+        <div class="muted">{{ r.author }}</div>
+        <div class="muted" style="margin-top:4px;">Due: {{ r.return_window }} · <span class="price">£{{ r.amount }}/wk</span></div>
+      </div>
+    </div>
+    {% else %}
+    <div class="card" style="text-align:center;padding:30px 16px;color:var(--text-2);">No books rented yet.</div>
+    {% endfor %}
+  </div>
+
+  <div id="tab-listings" style="display:none;">
+    {% for l in my_listings %}
+    <div class="list-row">
+      <div class="cover" style="background:linear-gradient(135deg,hsl(260,60%,55%),hsl(300,60%,40%))">🛠️</div>
+      <div>
+        <div style="font-weight:600;font-size:.92rem;">{{ l.title }}</div>
+        <div class="muted">{{ l.author }}</div>
+        <div class="muted" style="margin-top:4px;">Return: {{ l.return_window }}</div>
+      </div>
+    </div>
+    {% else %}
+    <div class="card" style="text-align:center;padding:30px 16px;color:var(--text-2);">No listings yet.</div>
+    {% endfor %}
+    <a href="{{ url_for('publish') }}" class="btn ghost" style="margin-top:6px;">+ Publish a new product</a>
+  </div>
+
+  <div id="tab-bookmark" style="display:none;">
+    {% for b in bookmarks %}
+    <div class="list-row" onclick="location.href='{{ url_for('detail', lid=b.id) }}'">
+      <div class="cover" style="background:linear-gradient(135deg,hsl(330,60%,55%),hsl(10,60%,40%))">🖱️</div>
+      <div>
+        <div style="font-weight:600;font-size:.92rem;">{{ b.title }}</div>
+        <div class="muted">{{ b.author }}</div>
+        <div class="muted" style="margin-top:4px;"><span class="price">£{{ b.price }}/wk</span></div>
+      </div>
+    </div>
+    {% else %}
+    <div class="card" style="text-align:center;padding:30px 16px;color:var(--text-2);">No saved books yet.</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+function switchTab(key){
+  document.querySelectorAll('.tab').forEach((el,idx)=>{
+    el.classList.toggle('active', idx === ['renting','listings','bookmark'].indexOf(key));
+  });
+  ['renting','listings','bookmark'].forEach(k=>{
+    document.getElementById('tab-'+k).style.display = k===key?'block':'none';
+  });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="screen">
+  <div class="row" style="margin-bottom:14px;">
+    <div>
+      <div class="page-title" style="margin:0;">Discover</div>
+      <div class="muted">Textbooks shared by UEA students</div>
+    </div>
+  </div>
+  <div class="search"><span>🔍</span><input placeholder="Search books, subjects..."></div>
+  <div class="row" style="margin-bottom:12px;">
+    <span class="badge avail" style="font-size:.78rem;padding:6px 12px;">Filter: All</span>
+    <span class="badge avail" style="font-size:.78rem;padding:6px 12px;">Available</span>
+  </div>
+  <div class="grid">
+    {% for b in listings %}
+    <a class="book-card" href="{{ url_for('detail', lid=b.id) }}">
+      <div class="cover" style="background:linear-gradient(135deg,hsl({{ loop.index0*30 % 360 }},60%,55%),hsl({{ (loop.index0*30+40) % 360 }},60%,40%))">📘</div>
+      <div class="info">
+        <div class="title">{{ b.title }}</div>
+        <div class="muted">{{ b.author }}</div>
+        <div class="meta">
+          <span class="price">£{{ b.price }}/wk</span>
+        </div>
+        <div class="meta" style="margin-top:6px;">
+          <span class="badge avail">Available</span>
+          <span class="bookmark">📑</span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="screen">
+  <div class="topbar">
+    <a class="back" href="javascript:history.back()">←</a>
+    <div class="page-title" style="margin:0;">Settings</div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="setting-row">
+      <div><div style="font-weight:600;">Text size</div><div class="muted">Adjust reading size</div></div>
+      <select>
+        <option>Small</option>
+        <option selected>Medium</option>
+        <option>Large</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="setting-row">
+      <div><div style="font-weight:600;">Notifications</div><div class="muted">Who can message you</div></div>
+    </div>
+    <label class="setting-row"><span>None</span><input type="radio" name="notify"></label>
+    <label class="setting-row"><span>Everyone</span><input type="radio" name="notify" checked></label>
+    <label class="setting-row"><span>Only chats</span><input type="radio" name="notify"></label>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="setting-row">
+      <div><div style="font-weight:600;">Restrict content</div><div class="muted">Filter content for younger users</div></div>
+      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div><div style="font-weight:600;">Theme colour</div></div>
+      <div class="row">
+        <div class="swatch active" style="width:30px;height:30px;border-radius:50%;background:#2f6fed;"></div>
+        <div class="swatch" style="width:30px;height:30px;border-radius:50%;background:#2e9e6b;"></div>
+        <div class="swatch" style="width:30px;height:30px;border-radius:50%;background:#e05252;"></div>
+        <div class="swatch" style="width:30px;height:30px;border-radius:50%;background:#8b5cf6;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px;">
+    <div class="setting-row" onclick="toast('Help centre opened')">
+      <div><div style="font-weight:600;">Help</div><div class="muted">Search FAQs and guides</div></div>
+      <span class="link">Search →</span>
+    </div>
+    <div class="setting-row" onclick="toast('Support: support@skillshare.uea.ac.uk')">
+      <div><div style="font-weight:600;">Support service</div><div class="muted">support@skillshare.uea.ac.uk</div></div>
+      <span class="link">Contact →</span>
+    </div>
+  </div>
+
+  <a href="{{ url_for('logout') }}" class="btn ghost">Log out</a>
+</div>
+{% endblock %}

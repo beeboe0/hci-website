@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth no-nav">
+  <div class="logo">✍️</div>
+  <h1>Create account</h1>
+  <p class="sub">Join the UEA student sharing community</p>
+  <form method="POST">
+    <div class="field">
+      <label>Username</label>
+      <input name="username" type="text" placeholder="Choose a username" required>
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input name="email" type="email" placeholder="your.name@uea.ac.uk" required>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input name="password" type="password" placeholder="Create a password" required>
+    </div>
+    <button class="btn" type="submit">Create</button>
+    <div class="auth-links">
+      <span></span>
+      <a class="link" href="{{ url_for('login') }}">Back to log in</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
